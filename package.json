@@ -1,0 +1,9 @@
+{
+  "name": "rappiemulator",
+  "version": "1.0.0",
+  "description": "API emulator for ecommerce App Rappi",
+  "main": "index.js",
+  "scripts": { },
+  "author": "Florencia Resoagli",
+  "license": "ISC"
+}
