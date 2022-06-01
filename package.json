@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "API emulator for ecommerce App Rappi",
   "main": "index.js",
-  "scripts": { },
+  "scripts": {},
   "author": "Florencia Resoagli",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.38",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.7.2"
+  }
 }
