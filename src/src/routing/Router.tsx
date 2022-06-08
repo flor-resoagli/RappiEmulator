@@ -7,7 +7,7 @@ export const Router = () => {
     return (
         <Suspense fallback={<Loading/>}>
             <Routes>
-                <Route element={<Home/>} path={"/home"}/>
+                <Route element={<Home/>} path={"/"}/>
             </Routes>
         </Suspense>
     );
