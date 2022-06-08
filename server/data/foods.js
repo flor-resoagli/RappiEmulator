@@ -4,7 +4,6 @@ const foods_r = [
     name: 'Spicy Teriyaki',
     price: 19.25,
     image: 'spicy-teriyaki.jpg',
-
     restaurant: {
       id: 25,
       name: 'MIZ Japanese Restaurant',

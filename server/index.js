@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
-
-
 const {foods} = require('./data/foods.js');
 
 const app = express();
@@ -12,8 +10,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/images', express.static('images'));
-
-
 
 app.get('/foods/:query?', (req, res) => {
   const foods_r = foods();
@@ -33,6 +29,9 @@ app.get('/foods/:query?', (req, res) => {
     foods: foods_r,
   });
 });
+
+app.get('/add', require('./routes/add'));
+app.get('/subtract', require('./routes/subtract'));
 
 const PORT = 5000;
 app.listen(PORT, err => {
