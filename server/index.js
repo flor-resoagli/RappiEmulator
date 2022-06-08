@@ -30,10 +30,11 @@ app.get('/foods/:query?', (req, res) => {
   });
 });
 
-app.get('/add', require('./routes/add'));
-app.get('/subtract', require('./routes/subtract'));
+app.post('/add', require('./routes/add'));
+app.post('/subtract', require('./routes/subtract'));
 
 const PORT = 5000;
+
 app.listen(PORT, err => {
   if (err) {
     console.error(err);
@@ -41,3 +42,5 @@ app.listen(PORT, err => {
     console.log(`Running on ports ${PORT}`);
   }
 });
+
+module.exports = app;

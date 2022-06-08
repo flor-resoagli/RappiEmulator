@@ -16,8 +16,6 @@ const foods_r = [
     name: 'Honey Garlic Chicken',
     price: 5.5,
     image: 'honey-garlic-chicken.jpg',
-    restaurant_id: 26,
-
     restaurant: {
       id: 26,
       name: 'Everton Food Place',
@@ -30,7 +28,6 @@ const foods_r = [
     name: 'La-La White Bee Hoon',
     price: 15.94,
     image: 'white-bee-hoon.jpg',
-
     restaurant: {
       id: 27,
       name: 'Botany Robertson Quay',
@@ -43,7 +40,6 @@ const foods_r = [
     name: 'Sesame Chicken Noodle',
     price: 15.94,
     image: 'sesame-chicken-noodle.jpg',
-    restaurant_id: 28,
     restaurant: 'Hai Tien Lo',
     location: [1.292396, 103.8562925],
   },

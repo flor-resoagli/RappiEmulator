@@ -21,3 +21,10 @@ exports.it_should_not_add_item = function(done){
     assert.ok(result.length === 0);
     return done();
 };
+
+exports.it_should_not_add_item_if_format_is_incorrect = function(done){
+    let item = {};
+    let result = add([],item,1);
+    assert.ok(result.length === 0);
+    return done();
+};
