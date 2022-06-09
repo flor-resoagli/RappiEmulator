@@ -13,6 +13,7 @@ exports.orderShouldReturnFalseIfAttributesAreNull = function(done){
         address: '17 Kampong Bahru Rd, Singapore 169347',
         location: [16.618037, 120.3146543],
         status: "ONLINE",
+        minimumPrice: 5,
         foodItems:[{id: 1,
             name: 'Spicy Teriyaki',
             price: 19.25,
@@ -31,3 +32,101 @@ exports.orderShouldReturnFalseIfAttributesAreNull = function(done){
     return done();
 };
 
+exports.orderShouldReturnFalseIfRestaurantIsNotLive = function(done){
+    let restaurant = {
+        id: 25,
+        name: 'MIZ Japanese Restaurant',
+        address: '17 Kampong Bahru Rd, Singapore 169347',
+        location: [16.618037, 120.3146543],
+        status: "OFFLINE",
+        minimumPrice: 5,
+        foodItems:[{id: 1,
+            name: 'Spicy Teriyaki',
+            price: 19.25,
+            image: 'spicy-teriyaki.jpg',},
+            {id: 2,
+                name: 'Honey Garlic Chicken',
+                price: 5.5,
+                image: 'honey-garlic-chicken.jpg',}]
+    };
+    let user = {userId:123, location: [16.618037, 120.3146543]};
+    let cart = [{id:1, price:5, name: "sandwich", restaurant: "MIZ Japanese Restaurant", restaurantId: 25}]
+    let result = makeOrder(cart, user,restaurant);
+    assert.ok(!result);
+    return done();
+};
+
+exports.orderShouldReturnTrueIfRestaurantIsLive = function(done){
+    let restaurant = {
+        id: 25,
+        name: 'MIZ Japanese Restaurant',
+        address: '17 Kampong Bahru Rd, Singapore 169347',
+        location: [16.618037, 120.3146543],
+        status: "ONLINE",
+        minimumPrice: 5,
+        foodItems:[{id: 1,
+            name: 'Spicy Teriyaki',
+            price: 19.25,
+            image: 'spicy-teriyaki.jpg',},
+            {id: 2,
+                name: 'Honey Garlic Chicken',
+                price: 5.5,
+                image: 'honey-garlic-chicken.jpg',}]
+    };
+    let user = {userId:123, location: [16.618037, 120.3146543]};
+    let cart = [{id: 1,
+        name: 'Spicy Teriyaki',
+        price: 19.25,
+        restaurantId:25}]
+    let result = makeOrder(cart, user,restaurant);
+    assert.ok(result);
+    return done();
+};
+
+exports.orderShouldReturnFalseIfRestaurantIsFarAway = function(done){
+    let restaurant = {
+        id: 25,
+        name: 'MIZ Japanese Restaurant',
+        address: '17 Kampong Bahru Rd, Singapore 169347',
+        location: [16.618037, 120.3146543],
+        status: "ONLINE",
+        minimumPrice: 5,
+        foodItems:[{id: 1,
+            name: 'Spicy Teriyaki',
+            price: 19.25,
+            image: 'spicy-teriyaki.jpg',},
+            {id: 2,
+                name: 'Honey Garlic Chicken',
+                price: 5.5,
+                image: 'honey-garlic-chicken.jpg',}]
+    };
+    let user = {userId:123, location: [1.2773164, 103.8384773]};
+    let cart = [{id:1, price:5, name: "sandwich", restaurant: "MIZ Japanese Restaurant", restaurantId: 25}]
+    let result = makeOrder(cart, user,restaurant);
+    assert.ok(!result);
+    return done();
+};
+
+exports.orderShouldReturnFalseIfRestarauntPriceIsHigherThanItemCount = function(done){
+    let restaurant = {
+        id: 25,
+        name: 'MIZ Japanese Restaurant',
+        address: '17 Kampong Bahru Rd, Singapore 169347',
+        location: [16.618037, 120.3146543],
+        status: "ONLINE",
+        minimumPrice: 10,
+        foodItems:[{id: 1,
+            name: 'Spicy Teriyaki',
+            price: 19.25,
+            image: 'spicy-teriyaki.jpg',},
+            {id: 2,
+                name: 'Honey Garlic Chicken',
+                price: 5.5,
+                image: 'honey-garlic-chicken.jpg',}]
+    };
+    let user = {userId:123, location: [1.2773164, 103.8384773]};
+    let cart = [{id:1, price:5, name: "sandwich", restaurant: "MIZ Japanese Restaurant", restaurantId: 25}]
+    let result = makeOrder(cart, user,restaurant);
+    assert.ok(!result);
+    return done();
+};
