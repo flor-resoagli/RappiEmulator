@@ -109,7 +109,19 @@ MongoClient.connect(connectionString)
                                 if (err) {
                                     res.status(500).send({"Something went wrong, ": err})
                                 }
-                                res.status(200).send({"Successfully Removed": req.body.item})
+                                users.findOneAndUpdate(
+                                    {"name": "User 1"},
+                                    {
+                                        '$set': {cart: []}
+                                    },
+                                    {new: false, upsert: false, remove: {}, fields: {}},
+                                    (err, doc) => {
+                                        if (err) {
+                                            res.status(500).send({"Something went wrong, ": err})
+                                        }
+                                        res.status(200).send({"Successfully made Order and cleared Cart": orderItem})
+                                    }
+                                )
                             }
                         )
                     } else {
