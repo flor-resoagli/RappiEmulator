@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "API emulator for ecommerce App Rappi",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "server/node_modules/.bin/mocha -u exports ./server/tests/unit/*"
+  },
   "author": "Florencia Resoagli",
   "license": "ISC",
   "devDependencies": {
