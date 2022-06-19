@@ -23,12 +23,15 @@ exports.orderShouldReturnFalseIfAttributesAreNull = function(done){
             price: 5.5,
             image: 'honey-garlic-chicken.jpg',}]
     };
-    let result = makeOrder(null, null,restaurant);
+    let externalApiResultDistanceFarAway = true; //Mocked ExternalAPI for Distance
+    let result = makeOrder(null, null,restaurant, externalApiResultDistanceFarAway);
     assert.ok(!result);
-    let result2 = makeOrder(null, {},restaurant);
+    let result2 = makeOrder(null, {},restaurant, externalApiResultDistanceFarAway);
     assert.ok(!result2);
-    let result3 = makeOrder([], {},null);
+    let result3 = makeOrder([], {},null,externalApiResultDistanceFarAway);
     assert.ok(!result3);
+    let result4 = makeOrder([], {},restaurant,null);
+    assert.ok(!result4);
     return done();
 };
 
@@ -49,9 +52,10 @@ exports.orderShouldReturnFalseIfRestaurantIsNotLive = function(done){
                 price: 5.5,
                 image: 'honey-garlic-chicken.jpg',}]
     };
+    let externalApiResultDistanceFarAway = true; //Mocked ExternalAPI for Distance
     let user = {userId:123, location: [16.618037, 120.3146543]};
     let cart = [{id:1, price:5, name: "sandwich", restaurant: "MIZ Japanese Restaurant", restaurantId: 25}]
-    let result = makeOrder(cart, user,restaurant);
+    let result = makeOrder(cart, user,restaurant, externalApiResultDistanceFarAway);
     assert.ok(!result);
     return done();
 };
@@ -73,12 +77,13 @@ exports.orderShouldReturnTrueIfRestaurantIsLive = function(done){
                 price: 5.5,
                 image: 'honey-garlic-chicken.jpg',}]
     };
+    let externalApiResultDistanceFarAway = true; //Mocked ExternalAPI for Distance
     let user = {userId:123, location: [16.618037, 120.3146543]};
     let cart = [{id: 1,
         name: 'Spicy Teriyaki',
         price: 19.25,
         restaurantId:25}]
-    let result = makeOrder(cart, user,restaurant);
+    let result = makeOrder(cart, user,restaurant, externalApiResultDistanceFarAway);
     assert.ok(result);
     return done();
 };
@@ -100,9 +105,10 @@ exports.orderShouldReturnFalseIfRestaurantIsFarAway = function(done){
                 price: 5.5,
                 image: 'honey-garlic-chicken.jpg',}]
     };
+    let externalApiResultDistanceFarAway = false; //Mocked ExternalAPI for Distance
     let user = {userId:123, location: [1.2773164, 103.8384773]};
     let cart = [{id:1, price:5, name: "sandwich", restaurant: "MIZ Japanese Restaurant", restaurantId: 25}]
-    let result = makeOrder(cart, user,restaurant);
+    let result = makeOrder(cart, user,restaurant, externalApiResultDistanceFarAway);
     assert.ok(!result);
     return done();
 };
@@ -124,9 +130,10 @@ exports.orderShouldReturnFalseIfRestarauntPriceIsHigherThanItemCount = function(
                 price: 5.5,
                 image: 'honey-garlic-chicken.jpg',}]
     };
+    let externalApiResultDistanceFarAway = true; //Mocked ExternalAPI for Distance
     let user = {userId:123, location: [1.2773164, 103.8384773]};
     let cart = [{id:1, price:5, name: "sandwich", restaurant: "MIZ Japanese Restaurant", restaurantId: 25}]
-    let result = makeOrder(cart, user,restaurant);
+    let result = makeOrder(cart, user,restaurant, externalApiResultDistanceFarAway);
     assert.ok(!result);
     return done();
 };
