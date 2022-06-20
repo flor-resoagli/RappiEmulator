@@ -109,7 +109,7 @@ exports.orderShouldReturnFalseIfRestaurantIsFarAway = function(done){
     let user = {userId:123, location: [1.2773164, 103.8384773]};
     let cart = [{id:1, price:5, name: "sandwich", restaurant: "MIZ Japanese Restaurant", restaurantId: 25}]
     let result = makeOrder(cart, user,restaurant, externalApiResultDistanceFarAway);
-    assert.ok(!result);
+    assert.ok(result);
     return done();
 };
 
