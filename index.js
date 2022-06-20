@@ -12,7 +12,7 @@ makeOrder = require('./lib/makeOrder')
 getNearRestaurants = require('./lib/getNearRestaurants')
 
 //ATLAS_URI=mongodb+srv://user:user@localhost/myFirstDatabase?retryWrites=true&w=majority
-const connectionString = process.env.ATLAS_URI;
+const connectionString = process.env.ATLAS_URI || process.env.ME_CONFIG_MONGODB_URL //if its cloud or localhost.
 MongoClient.connect(connectionString)
     .then(client => {
         console.log('Connected to Database')
@@ -96,6 +96,7 @@ MongoClient.connect(connectionString)
         })
 
         app.post('/makeOrder', (req, res) => {
+            //makeOrder(body: restaurantName)
             users.findOne({"name": "User 1"}).then((user) => {
                 restaurantsCollection.findOne({"name": req.body.restaurantName}).then(restaurant => {
                     if (makeOrder(user?.cart, user,restaurant)) {
